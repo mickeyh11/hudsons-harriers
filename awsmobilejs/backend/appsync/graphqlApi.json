@@ -1,0 +1,10 @@
+{
+    "name": "hudsons-harriers-2018-12-29-22-08-23",
+    "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "userPoolConfig": {
+        "userPoolId": "us-east-1_ohEgvCrWp",
+        "awsRegion": "us-east-1",
+        "defaultAction": "ALLOW",
+        "appIdClientRegex": null
+    }
+}
