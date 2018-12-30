@@ -74,11 +74,30 @@ class App extends Component {
       }
     }`;
 
+    const SubscribeToEvent = `subscription SubscribeToEvent {
+      subscribeToEvent {
+        id
+        name
+        description
+        where
+        when
+      }
+    }`;
+
+    const handleNewEventData = (prev, { subscribeToEvent }) => {
+      const newEventList = prev.listEvents.items.concat([subscribeToEvent]);
+      return {listEvents: {items: newEventList}};
+    }
+
     return (
         <div>
           <EventForm />
-        
-          <Connect query={graphqlOperation(ListEvents)}>
+
+          <Connect 
+            query={graphqlOperation(ListEvents)}
+            subscription={graphqlOperation(SubscribeToEvent)}
+            onSubscriptionMsg={handleNewEventData}
+          >
               {({ data, loading, error }) => {
                   if (error) return (<h3>Error</h3>);
                   if (loading || !data.listEvents) return (<h3>Loading...</h3>);
